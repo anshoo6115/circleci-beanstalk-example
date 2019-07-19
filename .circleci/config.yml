@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circlecddi.com/docs/2.0/language-javascript/ for more details ...
-#
 version: 2
 jobs:
   deploy:
@@ -26,9 +22,9 @@ jobs:
       - run:
           name: Deploy to EB if branch is Master
           command: |
-             eb use server-backend-env --profile eb-cli
-             eb deploy -v --staged --profile eb-cli
-
+            eb use circleci-beanstalk-example-dev --profile eb-cli
+            eb deploy -v --staged --profile eb-cli
+ 
 workflows:
   version: 2
   build-deploy:
@@ -36,6 +32,6 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: 
+              only:
                 - master
                 - develop
